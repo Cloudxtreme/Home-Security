@@ -8,14 +8,14 @@ class MainController {
     this.$http = $http;
     this.awesomeThings = [];
 
-    $http.get('/api/things').then(response => {
+  /*  $http.get('/api/things').then(response => {
       this.awesomeThings = response.data;
       socket.syncUpdates('thing', this.awesomeThings);
-    });
+    });  
 
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('thing');
-    });
+    }); 
   }
 
   addThing() {
@@ -27,6 +27,8 @@ class MainController {
 
   deleteThing(thing) {
     this.$http.delete('/api/things/' + thing._id);
+  }
+   */
   }
 }
 
