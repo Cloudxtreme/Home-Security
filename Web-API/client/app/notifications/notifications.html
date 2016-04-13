@@ -1,3 +1,18 @@
+<canvas id="videoCanvas" width="1020" height="780">
+		<p>
+			Please use a browser that supports the Canvas Element, like
+			<a href="http://www.google.com/chrome">Chrome</a>,
+			<a href="http://www.mozilla.com/firefox/">Firefox</a>,
+			<a href="http://www.apple.com/safari/">Safari</a> or Internet Explorer 10
+		</p>
+	</canvas>
+  <script type="text/javascript">
+  		// Setup the WebSocket connection and start the player
+  		var client = new WebSocket( 'ws://localhost:8084/' );
+  		var canvas = document.getElementById('videoCanvas');
+  		var player = new jsmpeg(client, {canvas:canvas});
+  </script>
+
 
 <h1>Recent Posts</h1>
 <form role='form'>

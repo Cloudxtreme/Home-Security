@@ -9,6 +9,7 @@ import mongoose from 'mongoose';
 mongoose.Promise = require('bluebird');
 import config from './config/environment';
 import http from 'http';
+import streamer from './streamer.js'
 
 // Connect to MongoDB
 mongoose.connect(config.mongo.uri, config.mongo.options);
@@ -39,6 +40,7 @@ function startServer() {
 }
 
 setImmediate(startServer);
+streamer.startStreamer('my_secret_yo', 8082, 8084, 'jsmp');
 
 // Expose app
 exports = module.exports = app;
