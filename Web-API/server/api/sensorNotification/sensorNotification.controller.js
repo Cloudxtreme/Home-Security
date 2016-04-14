@@ -10,12 +10,18 @@
 'use strict';
 
 import _ from 'lodash';
+import config from '../../config/environment';
+var jwt = require('jwt-simple');
+var User = require('../user/user.model');
 var SensorNotification = require('./sensorNotification.model');
+
+var secretKey = config.secrets.session;
+
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
   return function(err) {
-    res.status(statusCode).send(err);
+    res.sendStatus(statusCode).send(err);
   };
 }
 

@@ -10,6 +10,10 @@ import path from 'path';
 export default function(app) {
   // Insert routes below
   app.use('/api/sensorNotifications', require('./api/sensorNotification'));
+  app.use('/api/user', require('./api/user'));
+  app.use('/api/session', require('./api/session'));
+
+
 
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')

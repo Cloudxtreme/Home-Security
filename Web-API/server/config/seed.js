@@ -5,8 +5,22 @@
 
 'use strict';
 
-var SensorNotification = require('../api/sensorNotification/sensorNotification.model');
+import SensorNotification from '../api/sensorNotification/sensorNotification.model';
+import User from '../api/user/user.model';
+var bcrypt = require('bcrypt');
 
+User.find({}).removeAsync()
+  .then(() => {
+    bcrypt.hash('soccer', 10, function(err, hash) {
+      User.create({
+        username: 'Gabe',
+        password: hash
+      }, {
+        username: 'Molly',
+        password: hash
+      });
+    });
+  });
 
 SensorNotification.create({
     status: 'Red',

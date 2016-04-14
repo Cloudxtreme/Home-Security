@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('newsfeedApp')
+angular.module('webApiApp')
   .controller('LoginCtrl', loginCtrl);
 
 function loginCtrl($scope, $rootScope, $http, $state, loginManager) {
@@ -24,7 +24,7 @@ function loginCtrl($scope, $rootScope, $http, $state, loginManager) {
     function _loginSuccess() {
       viewModel.loginError = false;
       $rootScope.$emit('login');
-      $state.go('posts');
+      $state.go('dashboard.notifications');
     }
 
     function _loginFailure() {

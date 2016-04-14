@@ -12,7 +12,7 @@ function notificationsManager($q, $http, $state, loginManager) {
 
 	/** Service Functions **/
 	service.createNotification = _createNotification;
-
+  service.getAllAndSync = _getAllAndSync;
 
 	/****** Implementation ******/
 
@@ -34,5 +34,17 @@ function notificationsManager($q, $http, $state, loginManager) {
 
 		return deferred.promise;
 	}
+
+  function _getAllAndSync(obj) {
+    $http({
+        url: '/api/sensorNotifications',
+          method: 'GET',
+          headers: {'X-Auth': loginManager.getToken()}
+       })
+       .then(response => {
+        obj.notifications = response.data;
+        socket.syncUpdates('sensorNotification', obj.notifications);
+      });
+  }
 
 }

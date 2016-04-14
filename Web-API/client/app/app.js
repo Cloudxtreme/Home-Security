@@ -11,18 +11,11 @@ angular.module('webApiApp', [
 ])
   .config(function($urlRouterProvider, $locationProvider, $stateProvider) {
     $urlRouterProvider
-      .otherwise('/notifications');
+      .otherwise('/login');
 
     $locationProvider.html5Mode(true);
 
     $stateProvider
-      .state('home', {
-        url: '/home',
-        templateUrl: 'app/home/home.html',
-        controller: 'HomeCtrl',
-        controllerAs: 'homeCtrl'
-      })
-
       .state('login', {
         url: '/login',
         templateUrl: 'app/login/login.html',
@@ -30,11 +23,16 @@ angular.module('webApiApp', [
         controllerAs: 'loginCtrl'
       })
 
-      .state('notifications', {
+      .state('dashboard', {
+        url: '/dashboard',
+        templateUrl: 'app/dashboard/dashboard.html',
+        controller: 'DashboardCtrl',
+        controllerAs: 'dashboardCtrl'
+      })
+      .state('dashboard.notifications', {
         url: '/notifications',
-        templateUrl: 'app/notifications/notifications.html',
+        templateUrl: 'app/dashboard/notifications/notifications.html',
         controller: 'NotificationsCtrl',
         controllerAs: 'notificationsCtrl'
       });
-
   });

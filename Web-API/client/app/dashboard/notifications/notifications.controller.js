@@ -24,10 +24,7 @@ function notificationsCtrl($scope, $rootScope, $http, $state, socket, notificati
   /******** Implementation *******/
 
   function _initController() {
-    $http.get('/api/sensorNotifications').then(response => {
-      viewModel.notifications = response.data;
-      socket.syncUpdates('sensorNotification', viewModel.notifications);
-    });
+    notificationsManager.getAllAndSync(viewModel);
 
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('sensorNotification');

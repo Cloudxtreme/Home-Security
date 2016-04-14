@@ -17,6 +17,8 @@ function loginManager($q, $http, $state) {
 	service.register = _register;
 	service.getUser = _getUser;
 	service.getToken = _getToken;
+  service.isLoggedIn = _isLoggedIn;
+  service.redirectIfNotLoggedIn = _redirectIfNotLoggedIn;
 
 
 	/****** Implementation ******/
@@ -79,5 +81,16 @@ function loginManager($q, $http, $state) {
 	function _getToken() {
 		return service.token;
 	}
+
+  function _isLoggedIn() {
+    return service.token != null && service.token != ''
+  }
+
+  function _redirectIfNotLoggedIn() {
+    if (!service.isLoggedIn()) {
+      $state.go('login');
+    }
+  }
+
 
 }
