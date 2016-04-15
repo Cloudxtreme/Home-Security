@@ -1,21 +1,126 @@
-<h1>Dashboard</h1>
 
-<canvas id="videoCanvas" width="1020" height="780">
-		<p>
-			Please use a browser that supports the Canvas Element, like
-			<a href="http://www.google.com/chrome">Chrome</a>,
-			<a href="http://www.mozilla.com/firefox/">Firefox</a>,
-			<a href="http://www.apple.com/safari/">Safari</a> or Internet Explorer 10
-		</p>
-	</canvas>
-  <script type="text/javascript">
-  		// Setup the WebSocket connection and start the player
-  		var client = new WebSocket( 'ws://localhost:8084/' );
-  		var canvas = document.getElementById('videoCanvas');
-  		var player = new jsmpeg(client, {canvas:canvas});
-  </script>
+<div class="hold-transition skin-black-light sidebar-mini">
+	<div class="wrapper">
 
+	  <!-- Main Header -->
+	  <header class="main-header">
 
-<div ui-view></div>
+	    <!-- Logo -->
+	    <a href="index.html" class="logo">
+	    <!-- mini logo -->
+	    <span class="logo-mini"><strong>Gabe</strong></span>
+	    <!-- logo -->
+	    <span class="logo-lg">Incident<strong>Log</strong></span> </a>
 
-<footer></footer>
+	    <!-- Header Navbar -->
+	    <nav class="navbar navbar-static-top" role="navigation">
+	      <!-- Sidebar toggle button-->
+				<div class="navbar-custom-menu navbar-left">
+	        <ul class="nav navbar-nav">
+	          <!-- Dashboard Button-->
+	          <li class="dropdown clickable">
+							<a ng-click="incidentsCtrl.goToCreateIncident()">
+								<i class="fa fa-bar-chart"></i>
+								<span>Dashboard</span>
+							</a>
+						</li>
+						<!-- Full Screen Video-->
+	          <li class="dropdown clickable">
+							<a ng-click="incidentsCtrl.goToCreateIncident()">
+								<i class="fa fa-video-camera"></i>
+								<span>Live Feed</span>
+							</a>
+						</li>
+						<!-- Hardware Stats -->
+	          <li class="dropdown clickable">
+							<a ng-click="incidentsCtrl.goToCreateIncident()">
+								<i class="fa fa-battery-half"></i>
+								<span>Hardware Stats</span>
+							</a>
+						</li>
+						<!-- User Log -->
+	          <li class="dropdown clickable">
+							<a ng-click="incidentsCtrl.goToCreateIncident()">
+								<i class="fa fa-list-alt"></i>
+								<span>User Log</span>
+							</a>
+						</li>
+					<ul>
+				</div>
+	      <!-- Navbar Right Menu -->
+	      <div class="navbar-custom-menu">
+	        <ul class="nav navbar-nav">
+	          <!-- User Account Menu -->
+	          <li class="dropdown user user-menu">
+	            <!-- Menu Toggle Button -->
+	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		            <!-- The user image in the navbar-->
+		            <i class="fa fa-user"></i>
+		            <span class="hidden-xs">{{dashboardCtrl.currentUser}}</span>
+							</a>
+	            <ul class="dropdown-menu">
+	              <li><a href="#" class=""><i class="fa fa-cog"></i>Profile</a></li>
+	              <li><a href="#" class=""><i class="fa fa-power-off"></i>Sign out</a></li>
+	            </ul>
+	          </li>
+						<!-- IMPORTANT TAKE THIS PART OUT -->
+						<li class="clickable" ng-click="dashboardCtrl.createTestNotification()">
+							<a>
+								<i class="fa fa-list-alt"></i>
+								<span>Create Test Notification</span>
+							</a>
+						</li>
+						<!-- TO HERE -->
+	          <!-- Control Sidebar Toggle Button -->
+	          <!--<li> <a href="#" data-toggle="control-sidebar"><i class="fa fa-history"></i></a> </li>-->
+	        </ul>
+	      </div>
+	    </nav>
+	  </header>
+	  <!-- Left side column. contains the logo and sidebar -->
+	  <aside class="main-sidebar">
+	    <section class="sidebar">
+	      <!-- Critical incident list -->
+	      <ul class="sidebar-menu ci-list">
+	        <li class="incident" ng-repeat="notification in dashboardCtrl.notifications"> <a href="#" ng-click="incidentsCtrl.openIncident(incident)">
+	          <div class="row">
+	            <div class="col-sm-2"><i class="fa fa-exclamation-triangle alert-triangle" ng-class="notification.level"></i></div>
+	            <div class="col-sm-10 last">
+	              <div class="title">{{notification.title}}</div>
+	              <div class="date"><i class="fa fa-clock-o"></i><span>{{notification.date | date:'hh:mm:ss a'}}</span></div>
+	              <div class="sitecode"><i class="fa fa-calendar"></i>{{notification.date | date:'MM / dd / yyyy'}}</div>
+	            </div>
+	          </div>
+	          </a> </li>
+	      </ul>
+	      <!-- /sidebar-menu -->
+	    </section>
+	    <!-- /sidebar -->
+	  </aside>
+
+	  <!-- Content Wrapper. Contains page content -->
+	  <div class="content-wrapper">
+
+	    <div ui-view=""></div>
+
+			<canvas id="videoCanvas" width="1020" height="780">
+					<p>
+						Please use a browser that supports the Canvas Element, like
+						<a href="http://www.google.com/chrome">Chrome</a>,
+						<a href="http://www.mozilla.com/firefox/">Firefox</a>,
+						<a href="http://www.apple.com/safari/">Safari</a> or Internet Explorer 10
+					</p>
+				</canvas>
+			  <script type="text/javascript">
+			  		// Setup the WebSocket connection and start the player
+			  		var client = new WebSocket( 'ws://localhost:8084/' );
+			  		var canvas = document.getElementById('videoCanvas');
+			  		var player = new jsmpeg(client, {canvas:canvas});
+			  </script>
+	    <!-- /content -->
+	  </div>
+	  <!-- /content-wrapper -->
+	</div>
+</div>
+
+<!--<footer></footer> -->

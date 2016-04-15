@@ -35,8 +35,8 @@ describe('SensorNotification API:', function() {
       request(app)
         .post('/api/sensorNotifications')
         .send({
-          status: 'New SensorNotification',
-          message: 'This is the brand new sensorNotification!!!'
+          level: 'New SensorNotification',
+          title: 'This is the brand new sensorNotification!!!'
         })
         .expect(201)
         .expect('Content-Type', /json/)
@@ -50,8 +50,8 @@ describe('SensorNotification API:', function() {
     });
 
     it('should respond with the newly created sensorNotification', function() {
-      newSensorNotification.status.should.equal('New SensorNotification');
-      newSensorNotification.message.should.equal('This is the brand new sensorNotification!!!');
+      newSensorNotification.level.should.equal('New SensorNotification');
+      newSensorNotification.title.should.equal('This is the brand new sensorNotification!!!');
     });
 
   });
@@ -78,8 +78,8 @@ describe('SensorNotification API:', function() {
     });
 
     it('should respond with the requested sensorNotification', function() {
-      sensorNotification.status.should.equal('New SensorNotification');
-      sensorNotification.message.should.equal('This is the brand new sensorNotification!!!');
+      sensorNotification.level.should.equal('New SensorNotification');
+      sensorNotification.title.should.equal('This is the brand new sensorNotification!!!');
     });
 
   });
@@ -91,8 +91,8 @@ describe('SensorNotification API:', function() {
       request(app)
         .put('/api/sensorNotifications/' + newSensorNotification._id)
         .send({
-          status: 'Updated SensorNotification',
-          message: 'This is the updated sensorNotification!!!'
+          level: 'Updated SensorNotification',
+          title: 'This is the updated sensorNotification!!!'
         })
         .expect(200)
         .expect('Content-Type', /json/)
@@ -110,8 +110,8 @@ describe('SensorNotification API:', function() {
     });
 
     it('should respond with the updated sensorNotification', function() {
-      updatedSensorNotification.status.should.equal('Updated SensorNotification');
-      updatedSensorNotification.message.should.equal('This is the updated sensorNotification!!!');
+      updatedSensorNotification.level.should.equal('Updated SensorNotification');
+      updatedSensorNotification.title.should.equal('This is the updated sensorNotification!!!');
     });
 
   });

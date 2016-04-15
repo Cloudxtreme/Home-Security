@@ -3,7 +3,7 @@
 angular.module('webApiApp')
   .service('notificationsManager', notificationsManager);
 
-function notificationsManager($q, $http, $state, loginManager) {
+function notificationsManager($q, $http, $state, socket, loginManager) {
 	/*jshint validthis: true */
 	var service = this;
 
@@ -16,13 +16,18 @@ function notificationsManager($q, $http, $state, loginManager) {
 
 	/****** Implementation ******/
 
-	function _createNotification(status, body) {
+	function _createNotification(level, title, description, status) {
 	  var deferred = $q.defer();
 
       $http({
       		url: '/api/sensorNotifications',
             method: 'POST',
-            data: {status: status, message: body },
+            data: {
+              level: level,
+              title: title,
+              description: description,
+              status: status,
+            },
             headers: {'X-Auth': loginManager.getToken()}
          })
 		.success(function() {

@@ -28,11 +28,31 @@ angular.module('webApiApp', [
         templateUrl: 'app/dashboard/dashboard.html',
         controller: 'DashboardCtrl',
         controllerAs: 'dashboardCtrl'
-      })
-      .state('dashboard.notifications', {
-        url: '/notifications',
-        templateUrl: 'app/dashboard/notifications/notifications.html',
-        controller: 'NotificationsCtrl',
-        controllerAs: 'notificationsCtrl'
       });
+      // .state('dashboard.notifications', {
+      //   url: '/notifications',
+      //   templateUrl: 'app/dashboard/notifications/notifications.html',
+      //   controller: 'NotificationsCtrl',
+      //   controllerAs: 'notificationsCtrl'
+      // });
+
+      // .state('dashboard.summary', {
+      //   url: '/summary',
+      //   templateUrl: 'app/dashboard/summary/summary.html',
+      //   controller: 'SummaryCtrl',
+      //   controllerAs: 'summaryCtrl'
+      // })
+      // .state('dashboard.hardware', {
+      //   url: '/hardware',
+      //   templateUrl: 'app/dashboard/hardware/hardware.html',
+      //   controller: 'HardwareCtrl',
+      //   controllerAs: 'hardwareCtrl'
+      // })
+      // .state('dashboard.user', {
+      //   url: '/user',
+      //   templateUrl: 'app/dashboard/user/user.html',
+      //   controller: 'UserCtrl',
+      //   controllerAs: 'userCtrl'
+      // });
+
   });

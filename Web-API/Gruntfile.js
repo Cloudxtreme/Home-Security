@@ -72,7 +72,7 @@ module.exports = function (grunt) {
         tasks: ['injector:scripts']
       },
       injectCss: {
-        files: ['<%= yeoman.client %>/{app,components}/**/*.css'],
+        files: ['<%= yeoman.client %>/{app,components, assets}/**/*.css'],
         tasks: ['injector:css']
       },
       jsTest: {

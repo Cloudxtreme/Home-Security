@@ -9,12 +9,13 @@ function dashboardCtrl($scope, $rootScope, $http, $state, socket, notificationsM
   /*jshint validthis: true */
   var viewModel = this;
 
-
   /** Controller Variables **/
+  viewModel.currentUser = 'User not logged in';
+  viewModel.notifications = [];
 
 
   /** Controller Functions **/
-
+  viewModel.createTestNotification = _createTestNotification;
 
   _initController();
 
@@ -23,5 +24,19 @@ function dashboardCtrl($scope, $rootScope, $http, $state, socket, notificationsM
 
   function _initController() {
 
+    loginManager.getUser().then(function(username) {
+      viewModel.currentUser = username.fullname;
+    });
+
+    notificationsManager.getAllAndSync(viewModel);
+
+    $scope.$on('$destroy', function() {
+      socket.unsyncUpdates('sensorNotification');
+    });
+
+  }
+
+  function _createTestNotification() {
+    notificationsManager.createNotification('yellow', 'This is a test notification', 'not much goin on here', 'open');
   }
 }

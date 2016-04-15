@@ -27,8 +27,8 @@ function loginManager($q, $http, $state) {
 		var deferred = $q.defer();
 
 		$http.get('api/user', {headers: {'X-Auth': service.token}})
-			.success(function(username) {
-				deferred.resolve(username);
+			.success(function(user) {
+				deferred.resolve(user);
 			})
 			.error(function(data, status) {
 				deferred.reject(status);

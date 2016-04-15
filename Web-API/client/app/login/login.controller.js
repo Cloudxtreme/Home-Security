@@ -24,7 +24,7 @@ function loginCtrl($scope, $rootScope, $http, $state, loginManager) {
     function _loginSuccess() {
       viewModel.loginError = false;
       $rootScope.$emit('login');
-      $state.go('dashboard.notifications');
+      $state.go('dashboard');
     }
 
     function _loginFailure() {

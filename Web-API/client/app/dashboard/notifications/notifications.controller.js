@@ -18,28 +18,28 @@ function notificationsCtrl($scope, $rootScope, $http, $state, socket, notificati
   viewModel.deleteNotification = _deleteNotification;
 
 
-  _initController();
+  //_initController();
 
 
   /******** Implementation *******/
 
-  function _initController() {
-    notificationsManager.getAllAndSync(viewModel);
-
-    $scope.$on('$destroy', function() {
-      socket.unsyncUpdates('sensorNotification');
-    });
-  }
-
-  function _addNotification() {
-    if (viewModel.notificationBody) {
-      notificationsManager.createNotification(viewModel.notificationStatus, viewModel.notificationBody);
-      viewModel.notificationStatus = '';
-      viewModel.notificationBody = '';
-    }
-  }
-
-  function _deleteNotification(notification) {
-    viewModel.$http.delete('/api/sensorNotifications/' + notification._id);
-  }
+  // function _initController() {
+  //   notificationsManager.getAllAndSync(viewModel);
+  //
+  //   $scope.$on('$destroy', function() {
+  //     socket.unsyncUpdates('sensorNotification');
+  //   });
+  // }
+  //
+  // function _addNotification() {
+  //   if (viewModel.notificationBody) {
+  //     notificationsManager.createNotification(viewModel.notificationStatus, viewModel.notificationBody);
+  //     viewModel.notificationStatus = '';
+  //     viewModel.notificationBody = '';
+  //   }
+  // }
+  //
+  // function _deleteNotification(notification) {
+  //   viewModel.$http.delete('/api/sensorNotifications/' + notification._id);
+  // }
 }

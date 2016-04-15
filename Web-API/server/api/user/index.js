@@ -7,7 +7,7 @@ var controller = require('./user.controller');
 
 var router = express.Router();
 
-router.get('/', controller.find);
+router.get('/', auth.isAuthenticated, controller.find);
 router.post('/', auth.isAuthenticated, controller.create);
 
 module.exports = router;

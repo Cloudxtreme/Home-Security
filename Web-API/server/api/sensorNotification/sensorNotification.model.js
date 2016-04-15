@@ -3,8 +3,10 @@
 var mongoose = require('bluebird').promisifyAll(require('mongoose'));
 
 var SensorNotificationSchema = new mongoose.Schema({
+  level: String,
   status: String,
-  message: String,
+  title: String,
+  description: String,
   date: {type: Date, default: Date.now}
 });
 

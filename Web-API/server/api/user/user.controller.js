@@ -25,11 +25,7 @@ function handleError(res, statusCode) {
 
 // Gets a list of Posts
 export function find(req, res) {
-  var token = req.headers['x-auth'];
-  var auth = jwt.decode(token, secretKey);
-  User.findOne({username: auth.username}, function(err, user) {
-    res.json(user);
-  })
+  res.json(req.user);
 }
 
 // Creates a new Post in the DB
