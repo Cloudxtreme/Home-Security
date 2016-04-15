@@ -21,14 +21,6 @@
       <!-- endinjector -->
     <!-- endbuild -->
 
-    <style type="text/css">
-  		#videoCanvas {
-  			/* Always stretch the canvas to 640x480, regardless of its
-  			internal size. */
-  			width: 1280px;
-  			height: 720px;
-  		}
-	  </style>
     <script type="text/javascript" src="assets/javascript/jsmpg.js"></script>
   </head>
   <body ng-app="webApiApp">
@@ -37,7 +29,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ui-view=""></div>
+    <div ui-view="" class="full-screen"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
@@ -76,7 +68,6 @@
       <script src="app/app.constant.js"></script>
       <script src="app/common/services/notificationsManager.service.js"></script>
       <script src="app/dashboard/dashboard.controller.js"></script>
-      <script src="app/dashboard/notifications/notifications.controller.js"></script>
       <script src="app/dashboard/summary/summary.controller.js"></script>
       <script src="app/common/services/loginManager.service.js"></script>
       <script src="components/footer/footer.directive.js"></script>
@@ -95,7 +86,6 @@
 <script src="components/footer/footer.directive.js"></script>
       <script src="app/common/services/notificationsManager.service.js"></script>
       <script src="app/dashboard/dashboard.controller.js"></script>
-      <script src="app/dashboard/notifications/notifications.controller.js"></script>
       <script src="app/login/login.controller.js"></script>
       <script src="app/common/services/loginManager.service.js"></script>
       <script src="components/modal/modal.service.js"></script>

@@ -16,6 +16,7 @@ function dashboardCtrl($scope, $rootScope, $http, $state, socket, notificationsM
 
   /** Controller Functions **/
   viewModel.createTestNotification = _createTestNotification;
+  viewModel.goTo = _goTo;
 
   _initController();
 
@@ -38,5 +39,9 @@ function dashboardCtrl($scope, $rootScope, $http, $state, socket, notificationsM
 
   function _createTestNotification() {
     notificationsManager.createNotification('yellow', 'This is a test notification', 'not much goin on here', 'open');
+  }
+
+  function _goTo(goTo) {
+    $state.go(goTo);
   }
 }

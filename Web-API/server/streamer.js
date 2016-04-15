@@ -69,8 +69,8 @@ streamer.startStreamer = function(STREAM_SECRET, STREAM_PORT, WEBSOCKET_PORT, ST
   	if( params[0] == STREAM_SECRET ) {
   		response.connection.setTimeout(0);
 
-  		width = (params[1] || 320)|0;
-  		height = (params[2] || 240)|0;
+  		width = (params[1] || 1280)|0;
+  		height = (params[2] || 720)|0;
 
   		console.log(
   			'Stream Connected: ' + request.socket.remoteAddress +

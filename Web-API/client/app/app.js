@@ -28,7 +28,7 @@ angular.module('webApiApp', [
         templateUrl: 'app/dashboard/dashboard.html',
         controller: 'DashboardCtrl',
         controllerAs: 'dashboardCtrl'
-      });
+      })
       // .state('dashboard.notifications', {
       //   url: '/notifications',
       //   templateUrl: 'app/dashboard/notifications/notifications.html',
@@ -36,12 +36,12 @@ angular.module('webApiApp', [
       //   controllerAs: 'notificationsCtrl'
       // });
 
-      // .state('dashboard.summary', {
-      //   url: '/summary',
-      //   templateUrl: 'app/dashboard/summary/summary.html',
-      //   controller: 'SummaryCtrl',
-      //   controllerAs: 'summaryCtrl'
-      // })
+      .state('dashboard.summary', {
+        url: '/summary',
+        templateUrl: 'app/dashboard/summary/summary.html',
+        controller: 'SummaryCtrl',
+        controllerAs: 'summaryCtrl'
+      });
       // .state('dashboard.hardware', {
       //   url: '/hardware',
       //   templateUrl: 'app/dashboard/hardware/hardware.html',

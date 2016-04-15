@@ -1,6 +1,6 @@
 
-<div class="hold-transition skin-black-light sidebar-mini">
-	<div class="wrapper">
+<div class="hold-transition skin-black-light sidebar-mini full-screen">
+	<div class="wrapper full-screen">
 
 	  <!-- Main Header -->
 	  <header class="main-header">
@@ -18,9 +18,9 @@
 				<div class="navbar-custom-menu navbar-left">
 	        <ul class="nav navbar-nav">
 	          <!-- Dashboard Button-->
-	          <li class="dropdown clickable">
-							<a ng-click="incidentsCtrl.goToCreateIncident()">
-								<i class="fa fa-bar-chart"></i>
+	          <li class="clickable" ng-click="dashboardCtrl.goTo('dashboard.summary')">
+							<a>
+								<i class="fa fa-tv"></i>
 								<span>Dashboard</span>
 							</a>
 						</li>
@@ -29,6 +29,13 @@
 							<a ng-click="incidentsCtrl.goToCreateIncident()">
 								<i class="fa fa-video-camera"></i>
 								<span>Live Feed</span>
+							</a>
+						</li>
+						<!-- Analytics-->
+	          <li class="dropdown clickable">
+							<a ng-click="incidentsCtrl.goToCreateIncident()">
+								<i class="fa fa-bar-chart"></i>
+								<span>Analytics</span>
 							</a>
 						</li>
 						<!-- Hardware Stats -->
@@ -102,21 +109,6 @@
 	  <div class="content-wrapper">
 
 	    <div ui-view=""></div>
-
-			<canvas id="videoCanvas" width="1020" height="780">
-					<p>
-						Please use a browser that supports the Canvas Element, like
-						<a href="http://www.google.com/chrome">Chrome</a>,
-						<a href="http://www.mozilla.com/firefox/">Firefox</a>,
-						<a href="http://www.apple.com/safari/">Safari</a> or Internet Explorer 10
-					</p>
-				</canvas>
-			  <script type="text/javascript">
-			  		// Setup the WebSocket connection and start the player
-			  		var client = new WebSocket( 'ws://localhost:8084/' );
-			  		var canvas = document.getElementById('videoCanvas');
-			  		var player = new jsmpeg(client, {canvas:canvas});
-			  </script>
 	    <!-- /content -->
 	  </div>
 	  <!-- /content-wrapper -->
