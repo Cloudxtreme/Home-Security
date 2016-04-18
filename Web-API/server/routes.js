@@ -10,6 +10,7 @@ import path from 'path';
 export default function(app) {
   // Insert routes below
   app.use('/api/sensorNotifications', require('./api/sensorNotification'));
+  app.use('/api/sensorStatuses', require('./api/sensorStatus'));
   app.use('/api/user', require('./api/user'));
   app.use('/api/session', require('./api/session'));
 

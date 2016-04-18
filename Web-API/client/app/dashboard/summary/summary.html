@@ -1,15 +1,153 @@
 
-<canvas id="videoCanvas" class="video-small" width="1020" height="780">
-    <p>
-      Please use a browser that supports the Canvas Element, like
-      <a href="http://www.google.com/chrome">Chrome</a>,
-      <a href="http://www.mozilla.com/firefox/">Firefox</a>,
-      <a href="http://www.apple.com/safari/">Safari</a> or Internet Explorer 10
-    </p>
-  </canvas>
-  <script type="text/javascript">
-      // Setup the WebSocket connection and start the player
-      var client = new WebSocket( 'ws://localhost:8084/' );
-      var canvas = document.getElementById('videoCanvas');
-      var player = new jsmpeg(client, {canvas:canvas});
-  </script>
+
+
+
+
+	<!-- <div class="alert" ng-class="{'alert-danger': alert.type=='danger', 'alert-success': alert.type=='success'}" ng-repeat="alert in incidentDescriptionCtrl.alerts">
+	  <button type="button" class="close" data-dismiss="alert">&times;</button>
+	  <span>{{alert.msg}}</span>
+	</div> -->
+	<!-- Content Header -->
+	<!-- <section class="content-header">
+	  <div class="row">
+	    <div class="col-lg-12">
+	      <h1><i class="fa fa-exclamation-triangle alert-triangle" ng-class="incidentDescriptionCtrl.incident.severity.warning_level"> </i>{{incidentDescriptionCtrl.incident.name}}</h1>
+	    </div>
+	  </div>
+	</section> -->
+
+	<!-- <section class="content-header-sub">
+	  <div class="row">
+	    <div class="col-sm-12 text-left">
+	      <button class="btn btn-sm btn-outline first" ng-click="incidentDescriptionCtrl.editIncident()" ng-disabled="incidentDescriptionCtrl.incident.completed"><i class="fa fa-pencil"></i>Edit</button>
+	       <button class="btn btn-sm" ng-class="{'btn-outline': !incidentDescriptionCtrl.incident.completed, 'btn-success': incidentDescriptionCtrl.incident.completed}" ng-click="incidentDescriptionCtrl.toggleCompleted()"><i class="fa fa-check"></i>{{ incidentDescriptionCtrl.incident.completed ? 'Mark as unresolved' : 'Mark as resolved'}}</button>
+				<button class="btn btn-sm btn-warning" ng-click="incidentDescriptionCtrl.toggleCompleted()"><i class="fa fa-check"></i>{{ incidentDescriptionCtrl.incident.completed ? 'Mark as unresolved' : 'Mark as resolved'}}</button>
+			</div>
+	  </div>
+	</section> -->
+
+	<!-- Main content -->
+	<section class="content details content-header-sub video-fill" style="min-height: 100px">
+		<div class="row">
+			<div class="col-sm-4" style="border-right: solid thin rgba(0,0,0,0.1);">
+				<div class="row">
+					<div class="item" style="padding-left: 25px">Raspberry Pi Status</div>
+				</div>
+				<div class="row">
+					<div class="led-box">
+						<div class="led-green"></div>
+					</div>
+					<div class="title" style="padding-top: 10px">Fully Operational</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="row">
+					<div class="item" style="padding-left: 25px">Arduino Status</div>
+				</div>
+				<div class="row">
+					<div class="led-box">
+						<div class="led-yellow"></div>
+					</div>
+					<div class="title" style="padding-top: 10px">Degraded Service</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="content details video-fill">
+	  <!-- Page Content Here -->
+	  <div class="row" style=>
+			<div class="col-md-4" style="height: 40vh; width: 35vw">
+				<canvas id="videoCanvas" class="video-fill"  width="1020" height="780">
+				    <p>
+				      Please use a browser that supports the Canvas Element, like
+				      <a href="http://www.google.com/chrome">Chrome</a>,
+				      <a href="http://www.mozilla.com/firefox/">Firefox</a>,
+				      <a href="http://www.apple.com/safari/">Safari</a> or Internet Explorer 10... Nottttt!
+				    </p>
+				  </canvas>
+				  <script type="text/javascript">
+				      // Setup the WebSocket connection and start the player
+				      var client = new WebSocket( 'ws://localhost:8084/' );
+				      var canvas = document.getElementById('videoCanvas');
+				      var player = new jsmpeg(client, {canvas:canvas});
+				  </script>
+			</div>
+	    <div class="col-md-6">
+	      <div class="row" style="height: 20vh; padding-top: 2vh">
+	        <div class="col-md-6">
+	          <div class="title">Front Door Sensor</div>
+	          <div class="item">
+						  <div class="led-box">
+						    <div ng-class="{'led-green': summaryCtrl.getSensorByID('1').status == 'Closed', 'led-red': summaryCtrl.getSensorByID('1').status != 'Closed'}"></div>
+						  </div>
+							{{ summaryCtrl.getSensorByID("1").status }}
+						</div>
+	        </div>
+	        <div class="col-md-6">
+	          <div class="title">Window Sensor 1</div>
+						<div class="item">
+						  <div class="led-box">
+								<div ng-class="{'led-green': summaryCtrl.getSensorByID('2').status == 'Closed', 'led-red': summaryCtrl.getSensorByID('2').status != 'Closed'}"></div>
+						  </div>
+							{{summaryCtrl.getSensorByID("2").status }}
+						</div>
+	        </div>
+	      </div>
+	      <div class="row">
+	        <div class="col-md-6">
+	          <div class="title">Window Sensor 2</div>
+						<div class="item">
+						  <div class="led-box">
+								<div ng-class="{'led-green': summaryCtrl.getSensorByID('3').status == 'Closed', 'led-red': summaryCtrl.getSensorByID('3').status != 'Closed'}"></div>
+						  </div>
+							{{ summaryCtrl.getSensorByID("3").status }}
+						</div>
+	        </div>
+	        <div class="col-md-6">
+	          <div class="title">Window Sensor 3</div>
+						<div class="item">
+						  <div class="led-box">
+								<div ng-class="{'led-green': summaryCtrl.getSensorByID('4').status == 'Closed', 'led-red': summaryCtrl.getSensorByID('4').status != 'Closed'}"></div>
+						  </div>
+							{{summaryCtrl.getSensorByID("4").status}}
+						</div>
+	        </div>
+	      </div>
+				<div class="row">
+				</div>
+	    </div>
+	  </div>
+		<div class="row updates">
+			<div class="col-sm-12 text-right">
+				<button ng-if="!incidentDescriptionCtrl.showTextArea" class="btn btn-red uppercase" ng-click="incidentDescriptionCtrl.openTextArea()">Add New Update</button>
+			 <!--<label>Description of Incident</label>-->
+			 <textarea ng-if="incidentDescriptionCtrl.showTextArea" ng-model="incidentDescriptionCtrl.commentText" class="form-control" rows="6" placeholder="Enter description"></textarea>
+		 </div>
+		 <div class="col-sm-12 text-left" >
+			<span class ="text-danger" ng-if="incidentDescriptionCtrl.commentText.length > 1000">Please enter in less than 1000 characters</span>
+		</div>
+		 <div class="col-sm-12 text-right" >
+			<button ng-if="incidentDescriptionCtrl.showTextArea" ng-click="incidentDescriptionCtrl.addComment()" ng-disabled="incidentDescriptionCtrl.commentText.length > 1000" class="btn btn-red uppercase">Submit</button>
+		</div>
+		<div class="col-sm-12" >
+			<ul class="update-list" ng-if="incidentDescriptionCtrl.incident.comments.length > 0">
+				<li class="update row" ng-repeat="comment in incidentDescriptionCtrl.incident.comments | orderBy:'created_time':true">
+					<div class="col-lg-1 date-box">
+						<div class="update-date"> <span class="day">{{comment.created_time | date:'dd'}}</span><br>
+							<span class="month">{{comment.created_time | date:'MMM'}}</span><br>
+							<span class="year">{{comment.created_time | date:'yyyy'}}</span> </div>
+						</div>
+						<div class="col-sm-11">
+							<div class="meta">
+								<div class="meta-left left"><span class="time">{{comment.created_time | date:'h:mm a'}}</span></div>
+								<div class="meta-right right"><span class="user">Updated by: {{comment.user || 'Gabe Harms'}}</span></div>
+								<div class="meta-message"></div>
+							</div>
+							<div class="comment">
+								<p>{{comment.text}}</p>
+							</div>
+						</div>
+					</li>
+				</div>
+			</div>
+	</section>

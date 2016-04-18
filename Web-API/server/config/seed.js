@@ -6,6 +6,7 @@
 'use strict';
 
 import SensorNotification from '../api/sensorNotification/sensorNotification.model';
+import SensorStatus from '../api/sensorStatus/sensorStatus.model';
 import User from '../api/user/user.model';
 var bcrypt = require('bcrypt');
 
@@ -56,3 +57,23 @@ SensorNotification.find({}).removeAsync().then(() => {
       description: 'Arduino has detected that its battery is runnign low. It is currently at about 5%'
     });
   });
+
+  SensorStatus.find({}).removeAsync().then(() => {
+    SensorStatus.create({
+        id: '1',
+        status: 'Open',
+        description: 'Front Door Sensor'
+      }, {
+        id: '2',
+        status: 'Closed',
+        description: 'Window Down/Front Sensor'
+      }, {
+        id: '3',
+        status: 'Closed',
+        description: 'Window Down/Back Sensor'
+      }, {
+        id: '4',
+        status: 'Closed',
+        description: 'Window Up/Guest2 Sensor'
+      });
+    });
