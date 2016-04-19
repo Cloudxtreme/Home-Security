@@ -89,7 +89,7 @@
 	    <section class="sidebar">
 	      <!-- Critical incident list -->
 	      <ul class="sidebar-menu ci-list">
-	        <li class="incident" ng-repeat="notification in dashboardCtrl.notifications"> <a href="#" ng-click="incidentsCtrl.openIncident(incident)">
+	        <li class="incident" ng-repeat="notification in dashboardCtrl.notifications | orderBy:'date':true"> <a href="#" ng-click="incidentsCtrl.openIncident(incident)">
 	          <div class="row">
 	            <div class="col-sm-2"><i class="fa fa-exclamation-triangle alert-triangle" ng-class="notification.level"></i></div>
 	            <div class="col-sm-10 last">

@@ -23,7 +23,7 @@ function summaryCtrl($scope, $rootScope, $http, $state, socket, sensorManager) {
     sensorManager.getAllAndSync(viewModel);
 
     $scope.$on('$destroy', function() {
-      socket.unsyncUpdates('sensorNotification');
+      socket.unsyncUpdates('sensorStatuses');
     });
   }
 
