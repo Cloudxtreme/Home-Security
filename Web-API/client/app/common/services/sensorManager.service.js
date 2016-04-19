@@ -23,7 +23,7 @@ function sensorManager($q, $http, $state, socket, loginManager) {
        })
        .then(response => {
         obj.sensors = response.data;
-        socket.syncUpdates('sensorStatus', obj.sensors);
+        socket.syncUpdates('sensorStatuses', obj.sensors);
       });
   }
 
