@@ -29,6 +29,6 @@ function createListener(event, socket) {
 
 function removeListener(event, listener) {
   return function() {
-    userLogEvents.removeListener(event, listener);
+    UserLogEvents.removeListener(event, listener);
   };
 }
