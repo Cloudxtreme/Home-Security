@@ -28,9 +28,6 @@ function summaryCtrl($scope, $rootScope, $http, $state, socket, sensorManager) {
   }
 
   function _getSensorByID(id) {
-    console.log(_.find(viewModel.sensors, { 'id': id}));
-    console.log(viewModel.sensors);
-    console.log(id);
     return _.find(viewModel.sensors, { 'id': id});
   }
 

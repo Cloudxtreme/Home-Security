@@ -18,6 +18,8 @@ function onConnect(socket) {
 
   // Insert sockets below
   require('../api/sensorNotification/sensorNotification.socket').register(socket);
+  require('../api/sensorStatus/sensorStatus.socket').register(socket);
+  require('../api/userLog/userLog.socket').register(socket);
 
 }
 

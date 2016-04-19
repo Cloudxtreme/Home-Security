@@ -18,6 +18,7 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 // injector
 @import 'dashboard/dashboard.scss';
 @import 'dashboard/summary/summary.scss';
+@import 'dashboard/user/user.scss';
 @import 'login/login.scss';
 @import '../components/footer/footer.scss';
 @import '../components/modal/modal.scss';
@@ -1210,15 +1211,15 @@ font-weight:300;
 .main-sidebar .user-panel,
 .sidebar-menu > li.header {
   white-space: nowrap;
-  overflow: hidden;
+  overflow: auto;
 }
 .sidebar-menu:hover {
   overflow: visible;
 }
 .sidebar-form,
 .sidebar-menu > li.header {
-  overflow: hidden;
-  text-overflow: clip;
+  overflow: auto;
+  //text-overflow: clip;
 }
 .sidebar-menu li > a {
   position: relative;

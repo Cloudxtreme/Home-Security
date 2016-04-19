@@ -13,7 +13,7 @@ export default function(app) {
   app.use('/api/sensorStatuses', require('./api/sensorStatus'));
   app.use('/api/user', require('./api/user'));
   app.use('/api/session', require('./api/session'));
-
+  app.use('/api/userLogs', require('./api/userLog'));
 
 
   // All undefined asset or api routes should return a 404

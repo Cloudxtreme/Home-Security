@@ -3,7 +3,7 @@
 angular.module('webApiApp')
   .controller('DashboardCtrl', dashboardCtrl);
 
-function dashboardCtrl($scope, $rootScope, $http, $state, socket, notificationsManager, loginManager) {
+function dashboardCtrl($scope, $rootScope, $http, $state, socket, notificationsManager, loginManager, userLogManager) {
   loginManager.redirectIfNotLoggedIn();
 
   /*jshint validthis: true */
@@ -24,7 +24,6 @@ function dashboardCtrl($scope, $rootScope, $http, $state, socket, notificationsM
   /******** Implementation *******/
 
   function _initController() {
-
     loginManager.getUser().then(function(username) {
       viewModel.currentUser = username.fullname;
     });

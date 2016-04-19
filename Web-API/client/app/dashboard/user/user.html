@@ -1,0 +1,47 @@
+<section>
+<section>
+<section class="content details video-fill">
+	<div class="row" style="padding-left: 20px;">
+		<h1>User Login Attempts</h1>
+	</div>
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th>Username</th>
+	      <th>Successful</th>
+	      <th>IP Address</th>
+				<th>Date</th>
+	    </tr>
+	  </thead>
+		<tbody>
+			<tr ng-repeat="userLog in userCtrl.userLogs | orderBy:'date':true">
+				<td>{{userLog.username}}</td>
+				<td>{{userLog.successful}}</td>
+				<td>{{userLog.ip}}</td>
+				<td>{{userLog.date | date:'hh:mm:ss a | dd MMM yyyy'}}</td>
+		</tbody>
+	</table>
+
+	<div class="row updates" style="border-top: none">
+		<div class="col-sm-12" >
+		<ul class="update-list" ng-if="userCtrl.userLogs.length > 0">
+			<li class="update row" ng-repeat="userLog in userCtrl.userLogs | orderBy:'date':true">
+				<div class="col-lg-1 date-box">
+					<div class="update-date"> <span class="day">{{userLog.date | date:'dd'}}</span><br>
+						<span class="month">{{userLog.date | date:'MMM'}}</span><br>
+						<span class="year">{{userLog.date | date:'yyyy'}}</span> </div>
+					</div>
+					<div class="col-sm-11">
+						<div class="meta">
+							<div class="meta-left left"><span class="time">{{userLog.date | date:'h:mm a'}}</span></div>
+							<div class="meta-right right"><span class="user">Updated by: {{userLog.username || 'Gabe Harms'}}</span></div>
+							<div class="meta-message"></div>
+						</div>
+						<div class="comment">
+							<p>{{userLog.successful}}</p>
+						</div>
+					</div>
+				</li>
+			</div>
+		</div>
+</section>

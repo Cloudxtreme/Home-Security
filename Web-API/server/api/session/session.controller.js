@@ -10,6 +10,7 @@ import config from '../../config/environment';
 var jwt = require('jwt-simple');
 var bcrypt = require('bcrypt');
 var User = require('../user/user.model');
+var UserLog = require('../userLog/userLog.model');
 
 
 var secretKey = config.secrets.session;
@@ -22,17 +23,30 @@ function handleError(res, statusCode) {
   };
 }
 
+function createUserLogEntry(username, success, ip) {
+  UserLog.createAsync(
+    {
+      username: username,
+      successful: success,
+      ip: ip
+    }
+  ).catch();
+}
 
-// Creates a new Post in the DB
+// Authenticates a user and creates a session
 export function create(req, res) {
   User.findOne({username: req.body.username})
     .select('password')
     .exec(function(err, user) {
-      if (err) { return res.send(500); }
-      if (!user) { return res.send(401); }
+      if (err) { return res.sendStatus(500); }
+      if (!user) {
+        createUserLogEntry(req.body.username, false, req.ip);
+        return res.sendStatus(401);
+      }
       bcrypt.compare(req.body.password, user.password, function(err, valid) {
-        if (err) { return res.send(500); }
-        if (!valid) { return res.send(401); }
+        createUserLogEntry(req.body.username, !err && valid, req.ip);
+        if (err) { return res.sendStatus(500); }
+        if (!valid) { return res.sendStatus(401); }
         var token = jwt.encode({username: req.body.username}, secretKey);
         res.json(token);
       });
