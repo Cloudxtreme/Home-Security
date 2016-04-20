@@ -3,7 +3,7 @@
 angular.module('webApiApp')
   .controller('DashboardCtrl', dashboardCtrl);
 
-function dashboardCtrl($scope, $rootScope, $http, $state, socket, notificationsManager, loginManager, userLogManager) {
+function dashboardCtrl($scope, $rootScope, $q, $modal, $state, socket, notificationsManager, loginManager, userLogManager, Modal) {
   loginManager.redirectIfNotLoggedIn();
 
   /*jshint validthis: true */
@@ -15,6 +15,8 @@ function dashboardCtrl($scope, $rootScope, $http, $state, socket, notificationsM
 
 
   /** Controller Functions **/
+  viewModel.openNotification = _openNotification;
+  viewModel.openFullScreen = _openFullScreen;
   viewModel.createTestNotification = _createTestNotification;
   viewModel.goTo = _goTo;
 
@@ -34,6 +36,29 @@ function dashboardCtrl($scope, $rootScope, $http, $state, socket, notificationsM
       socket.unsyncUpdates('sensorNotification');
     });
 
+  }
+
+  function _openNotification(notification) {
+    var modalInstance = $modal.open({
+      templateUrl: 'app/common/modals/sensor-notification.html',
+      controller: 'SensorNotificationModalCtrl',
+      controllerAs: 'sensorNotificationModalCtrl',
+      resolve: {
+        notificationObj: function() { return notification; }
+      }
+    });
+    // modalInstance.result.then(function(status) {
+    //   // if (status === 'Delete') {
+    //   //   analysisManager.deleteAnalysis(analysisId).then(_handleSuccess,_handleFailure);
+    //   // }
+    // });
+  }
+
+  function _openFullScreen() {
+    var modalInstance = $modal.open({
+      templateUrl: 'app/common/modals/full-screen-video.html',
+      size: 'lg'
+    });
   }
 
   function _createTestNotification() {

@@ -2,6 +2,7 @@
 
 angular.module('webApiApp', [
   'webApiApp.constants',
+  'ngAnimate',
   'ngCookies',
   'ngResource',
   'ngSanitize',

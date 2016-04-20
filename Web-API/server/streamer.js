@@ -17,6 +17,7 @@
           }
         ]
   /* NOTE: Must change 'width', 'hieght' variables below to match the stream
+  /* i.e: ffmpeg -video_size 1280x720 -framerate 30 -f avfoundation -i "0" -f mpeg1video -vf "crop=iw-mod(iw\,2):ih-mod(ih\,2)" -b 0 http://localhost:8082/my_secret_yo
  */
 
 'use strict';

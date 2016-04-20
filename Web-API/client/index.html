@@ -10,6 +10,8 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
@@ -58,20 +60,22 @@
       <script src="bower_components/lodash/dist/lodash.compat.js"></script>
       <script src="bower_components/angular-socket-io/socket.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+      <script src="bower_components/angular-animate/angular-animate.js"></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
     <!-- build:js(.tmp) app/app.js -->
       <script src="app/app.js"></script>
       <!-- injector:js -->
-      <script src="app/dashboard/user/user.controller.js"></script>
+      <script src="app/dashboard/summary/summary.controller.js"></script>
       <script src="app/app.constant.js"></script>
+      <script src="app/common/services/loginManager.service.js"></script>
       <script src="app/common/services/notificationsManager.service.js"></script>
       <script src="app/common/services/sensorManager.service.js"></script>
       <script src="app/common/services/userLogManager.service.js"></script>
       <script src="app/dashboard/dashboard.controller.js"></script>
-      <script src="app/dashboard/summary/summary.controller.js"></script>
-      <script src="app/common/services/loginManager.service.js"></script>
+      <script src="app/common/modals/sensor-notification.controller.js"></script>
+      <script src="app/dashboard/user/user.controller.js"></script>
       <script src="app/login/login.controller.js"></script>
       <script src="components/footer/footer.directive.js"></script>
       <script src="components/modal/modal.service.js"></script>

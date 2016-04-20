@@ -13,6 +13,8 @@ function notificationsManager($q, $http, $state, socket, loginManager) {
 	/** Service Functions **/
 	service.createNotification = _createNotification;
   service.getAllAndSync = _getAllAndSync;
+  service.markResolved = _markResolved;
+  service.delete = _delete;
 
 	/****** Implementation ******/
 
@@ -50,6 +52,25 @@ function notificationsManager($q, $http, $state, socket, loginManager) {
         obj.notifications = response.data;
         socket.syncUpdates('sensorNotification', obj.notifications);
       });
+  }
+
+  function _markResolved(obj) {
+    $http({
+        url: '/api/sensorNotifications/' + obj._id,
+          method: 'PATCH',
+          data: {
+            status: 'Resolved'
+          },
+          headers: {'X-Auth': loginManager.getToken()}
+    });
+  }
+
+  function _delete(obj) {
+    $http({
+        url: '/api/sensorNotifications/' + obj._id,
+          method: 'DELETE',
+          headers: {'X-Auth': loginManager.getToken()}
+    });
   }
 
 }
