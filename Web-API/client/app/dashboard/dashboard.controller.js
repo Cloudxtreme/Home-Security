@@ -62,7 +62,9 @@ function dashboardCtrl($scope, $rootScope, $q, $modal, $state, socket, notificat
   }
 
   function _createTestNotification() {
-    notificationsManager.createNotification('yellow', 'This is a test notification', 'not much goin on here', 'open');
+    var newVar = angular.copy(viewModel.notifications[0]);
+    viewModel.notifications.push(newVar);
+    //notificationsManager.createNotification('yellow', 'This is a test notification', 'not much goin on here', 'open');
   }
 
   function _goTo(goTo) {
