@@ -38,6 +38,7 @@ streamer.startStreamer = function(STREAM_SECRET, STREAM_PORT, WEBSOCKET_PORT, ST
   socketServer.on('connection', function(socket) {
   	// Send magic bytes and video size to the newly connected socket
   	// struct { char magic[4]; unsigned short width, height;}
+    console.log(socket.upgradeReq.url);
   	var streamHeader = new Buffer(8);
   	streamHeader.write(STREAM_MAGIC_BYTES);
   	streamHeader.writeUInt16BE(width, 4);
