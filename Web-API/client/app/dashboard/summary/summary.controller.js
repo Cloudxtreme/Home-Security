@@ -10,7 +10,7 @@ function summaryCtrl($scope, $rootScope, $http, $state, socket, sensorManager, l
 
   /** Controller Variables **/
   viewModel.sensors = [];
-  viewModel.streamToken = loginManager.getToken();
+  viewModel.streamToken = null;
 
   /** Controller Functions **/
   viewModel.getSensorByID = _getSensorByID;
@@ -21,6 +21,7 @@ function summaryCtrl($scope, $rootScope, $http, $state, socket, sensorManager, l
   /******** Implementation *******/
 
   function _initController() {
+    viewModel.streamToken = loginManager.getToken();
     sensorManager.getAllAndSync(viewModel);
 
     $scope.$on('$destroy', function() {

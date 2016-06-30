@@ -56,6 +56,8 @@ function dashboardCtrl($scope, $rootScope, $q, $modal, $state, socket, notificat
 
   function _openFullScreen() {
     var modalInstance = $modal.open({
+      controller: 'FullScreenCtrl',
+      controllerAs: 'fullScreenCtrl',
       templateUrl: 'app/common/modals/full-screen-video.html',
       size: 'lg'
     });

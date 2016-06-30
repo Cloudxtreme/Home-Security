@@ -3,22 +3,24 @@ angular.module('webApiApp')
   .directive('liveStream', liveStreamDirective);
 
 
-function liveStreamCtrl($scope) {
+function liveStreamCtrl($scope, $timeout) {
   var viewModel = this; // jshint ignore:line
 
   /** Directive Variables **/
   viewModel.token = $scope.token;
+  viewModel.name = $scope.name;
 
   /** Directive Functions **/
 
-  _initController();
+  $timeout(_initController, 0);
 
     /****** Implementation ******/
   function _initController() {
-    var client = new WebSocket( 'ws://0.tcp.ngrok.io:14066/' + viewModel.token);
-    var canvas = document.getElementById('videoCanvas');
-    var player = new jsmpeg(client, {canvas:canvas});
-
+    angular.element(document).ready(function () {
+      var client = new WebSocket( 'ws://0.tcp.ngrok.io:14066/' + viewModel.token);
+      var canvas = document.getElementById('videoCanvas' + viewModel.name);
+      var player = new jsmpeg(client, {canvas:canvas});
+    });
   }
 }
 
@@ -26,10 +28,11 @@ function liveStreamDirective() {
   return {
     restrict: 'E',
     scope: {
-      token: '=token'
+      token: '=token',
+      name: '=name'
     },
     templateUrl: 'app/common/partials/live-stream.partial.html',
     controller: 'LiveStreamCtrl',
-    controllerAs: 'liveStreamVM'
+    controllerAs: 'liveStreamCtrl'
   };
 }
