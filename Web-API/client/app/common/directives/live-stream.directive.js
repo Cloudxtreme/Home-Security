@@ -3,7 +3,7 @@ angular.module('webApiApp')
   .directive('liveStream', liveStreamDirective);
 
 
-function liveStreamCtrl($scope, $timeout) {
+function liveStreamCtrl($scope, $timeout, streamUrlManager) {
   var viewModel = this; // jshint ignore:line
 
   /** Directive Variables **/
@@ -16,11 +16,19 @@ function liveStreamCtrl($scope, $timeout) {
 
     /****** Implementation ******/
   function _initController() {
-    angular.element(document).ready(function () {
-      var client = new WebSocket( 'ws://0.tcp.ngrok.io:14066/' + viewModel.token);
+
+    function _initPlayer(url) {
+      console.log(url); 
+      var client = new WebSocket( 'ws://' + url +  '/' + viewModel.token);
       var canvas = document.getElementById('videoCanvas' + viewModel.name);
       var player = new jsmpeg(client, {canvas:canvas});
-    });
+    }
+
+    function _showError() {
+      alert('Stream Server Could Not Be Found');
+    }
+    
+    streamUrlManager.getUrl().then(_initPlayer, _showError);
   }
 }
 
