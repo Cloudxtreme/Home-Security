@@ -4,22 +4,8 @@
 </div>
 <div class="modal-body">
   <form name="notificationInfo" novalidate>
-
     <section class="content details">
-      <canvas id="videoCanvas2" class="video-fill"  width="1280" height="720">
-          <p>
-            Please use a browser that supports the Canvas Element, like
-            <a href="http://www.google.com/chrome">Chrome</a>,
-            <a href="http://www.mozilla.com/firefox/">Firefox</a>,
-            <a href="http://www.apple.com/safari/">Safari</a> or Internet Explorer 10... Nottttt!
-          </p>
-        </canvas>
-        <script type="text/javascript">
-            // Setup the WebSocket connection and start the player
-            var client = new WebSocket( 'ws:/192.168.2.14:8084/' );
-            var canvas = document.getElementById('videoCanvas2');
-            var player = new jsmpeg(client, {canvas:canvas});
-        </script>
+      <live-stream token="fullScreenCtrl.token" name="'fullScreenModal'" /> 
     </section>
     <div class="form-actions text-center modal-footer">
       <button type="submit" class="btn btn-default btn-flat" ng-click="$dismiss()">Cancel</button>

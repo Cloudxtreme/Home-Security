@@ -57,20 +57,7 @@
 	  <!-- Page Content Here -->
 	  <div class="row" style=>
 			<div class="col-md-4" style="height: 40vh; width: 35vw">
-				<canvas ng-click="dashboardCtrl.openFullScreen()" id="videoCanvas" class="video-fill clickable"  width="1280" height="720">
-				    <p>
-				      Please use a browser that supports the Canvas Element, like
-				      <a href="http://www.google.com/chrome">Chrome</a>,
-				      <a href="http://www.mozilla.com/firefox/">Firefox</a>,
-				      <a href="http://www.apple.com/safari/">Safari</a> or Internet Explorer 10... Nottttt!
-				    </p>
-				  </canvas>
-				  <script type="text/javascript">
-				      // Setup the WebSocket connection and start the player
-				      var client = new WebSocket( 'ws://192.168.2.14:8084/' );
-				      var canvas = document.getElementById('videoCanvas');
-				      var player = new jsmpeg(client, {canvas:canvas});
-				  </script>
+			  <live-stream token="summaryCtrl.streamToken" name="'summary'" />	
 			</div>
 	    <div class="col-md-6">
 	      <div class="row" style="height: 20vh; padding-top: 2vh">
