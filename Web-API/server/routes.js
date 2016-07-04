@@ -14,6 +14,7 @@ export default function(app) {
   app.use('/api/user', require('./api/user'));
   app.use('/api/session', require('./api/session'));
   app.use('/api/userLogs', require('./api/userLog'));
+  app.use('/api/streamUrl', require('./api/streamUrl'));
 
 
   // All undefined asset or api routes should return a 404

@@ -17,11 +17,15 @@ module.exports = function (grunt) {
     cdnify: 'grunt-google-cdn',
     protractor: 'grunt-protractor-runner',
     buildcontrol: 'grunt-build-control',
-    ngconstant: 'grunt-ng-constant'
+    ngconstant: 'grunt-ng-constant',
+    ngrok: 'grunt-ngrok',
+    stream: 'tasks/stream.js'
   });
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
+  grunt.loadNpmTasks('grunt-ngrok');
+  grunt.loadTasks("./tasks");
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -33,6 +37,30 @@ module.exports = function (grunt) {
       client: require('./bower.json').appPath || 'client',
       server: 'server',
       dist: 'dist'
+    },
+    ngrok: {
+      options: {
+        authToken: '3aT9NRB8axfgBNxfjheGq_68M2wymgatztYut6xYLaX',
+        log: 'stdout',
+        onConnected: function(url) {
+            grunt.log.writeln('Opened tunnel at %s', url);
+            if (url.match(/tcp\:\/\//)) {
+              process.env['STREAMSERVER_URL'] = url.split('tcp://')[1];
+            }
+        }
+      },
+      tunnels: {
+        webserver: {
+          proto: 'http',
+          addr: 9000,
+          bindTLS: 'false', 
+          subdomain: 'gabeharmsWebServer'
+        },
+        streamserver: {
+          proto: 'tcp',
+          addr: 8084,
+        },
+      }
     },
     express: {
       options: {
@@ -688,8 +716,9 @@ module.exports = function (grunt) {
       'injector',
       'wiredep:client',
       'postcss',
-      'start-stream',
+      'ngrok',
       'express:dev',
+      'stream',
       'wait',
       'open',
       'watch'

@@ -24,7 +24,7 @@
 
 import http from 'http';
 import ws from 'ws';
-
+import { isTokenValid } from './components/authentication/auth';
 var streamer = {}
 
 
@@ -36,19 +36,31 @@ streamer.startStreamer = function(STREAM_SECRET, STREAM_PORT, WEBSOCKET_PORT, ST
   // Websocket Server
   var socketServer = new (ws.Server)({port: WEBSOCKET_PORT});
   socketServer.on('connection', function(socket) {
-  	// Send magic bytes and video size to the newly connected socket
-  	// struct { char magic[4]; unsigned short width, height;}
-  	var streamHeader = new Buffer(8);
-  	streamHeader.write(STREAM_MAGIC_BYTES);
-  	streamHeader.writeUInt16BE(width, 4);
-  	streamHeader.writeUInt16BE(height, 6);
-  	socket.send(streamHeader, {binary:true});
 
-  	console.log( 'New WebSocket Connection ('+socketServer.clients.length+' total)' );
+    function _acceptConnection() {
+      // Send magic bytes and video size to the newly connected socket
+      // struct { char magic[4]; unsigned short width, height;}
+      var streamHeader = new Buffer(8);
+      streamHeader.write(STREAM_MAGIC_BYTES);
+      streamHeader.writeUInt16BE(width, 4);
+      streamHeader.writeUInt16BE(height, 6);
+      socket.send(streamHeader, {binary:true});
 
-  	socket.on('close', function(code, message){
-  		console.log( 'Disconnected WebSocket ('+socketServer.clients.length+' total)' );
-  	});
+      console.log( 'New WebSocket Connection ('+socketServer.clients.length+' total)' );
+
+      socket.on('close', function(code, message){
+        console.log( 'Disconnected WebSocket ('+socketServer.clients.length+' total)' );
+      });
+
+    }
+
+    function _rejectConnection() {
+      console.log( 'Websocket Not Authenticated!. Closing.');
+      socket.terminate();
+    }
+
+    isTokenValid(socket.upgradeReq.url.substring(1)).then(_acceptConnection).catch(_rejectConnection);
+
   });
 
   socketServer.broadcast = function(data, opts) {
