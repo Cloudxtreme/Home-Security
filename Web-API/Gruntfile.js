@@ -18,12 +18,14 @@ module.exports = function (grunt) {
     protractor: 'grunt-protractor-runner',
     buildcontrol: 'grunt-build-control',
     ngconstant: 'grunt-ng-constant',
-    ngrok: 'grunt-ngrok'
+    ngrok: 'grunt-ngrok',
+    stream: 'tasks/stream.js'
   });
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
   grunt.loadNpmTasks('grunt-ngrok');
+  grunt.loadTasks("./tasks");
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -51,12 +53,12 @@ module.exports = function (grunt) {
         webserver: {
           proto: 'http',
           addr: 9000,
+          bindTLS: 'false', 
           subdomain: 'gabeharmsWebServer'
         },
         streamserver: {
           proto: 'tcp',
           addr: 8084,
-          subdomain: 'gabeharmsStreamServer'
         },
       }
     },
@@ -78,7 +80,7 @@ module.exports = function (grunt) {
     },
     open: {
       server: {
-        url: 'http://0.0.0.0:<%= express.options.port %>'
+        url: 'http://localhost:<%= express.options.port %>'
       }
     },
     watch: {
@@ -716,6 +718,7 @@ module.exports = function (grunt) {
       'postcss',
       'ngrok',
       'express:dev',
+      'stream',
       'wait',
       'open',
       'watch'
